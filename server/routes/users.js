@@ -16,18 +16,18 @@ router
   .route("/:id")
   .get(getUser) // Get One
   .put(verifyToken, updateUser) // Update
-  .delete(deleteUser); // Delete
+  .delete(verifyToken, deleteUser); // Delete
 
 // Subscribe
-router.put("/sub/:user_id", subscribe);
+router.put("/sub/:user_id", verifyToken, subscribe);
 
 // Unsubscribe
-router.put("/unsub/:user_id", unsubscribe);
+router.put("/unsub/:user_id", verifyToken, unsubscribe);
 
 // Like Video
-router.put("/like/:video_id", likeVideo);
+router.put("/like/:video_id", verifyToken, likeVideo);
 
 // Dislike Video
-router.put("/dislike/:video_id", dislikeVideo);
+router.put("/dislike/:video_id", verifyToken, dislikeVideo);
 
 export default router;

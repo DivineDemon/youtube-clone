@@ -27,14 +27,63 @@ export const updateUser = async (req, res, next) => {
   }
 };
 
-export const deleteUser = (req, res, next) => {};
+export const deleteUser = async (req, res, next) => {
+  if (req.params.id === req.user.id) {
+    try {
+      await User.findByIdAndDelete(req.params.id);
 
-export const getUser = (req, res, next) => {};
+      res.status(200).json({
+        success: true,
+        message: "User Deleted Successfully!",
+      });
+    } catch (error) {
+      next(error);
+    }
+  } else {
+    return next(createError(403, "Delete Action Forbidden!"));
+  }
+};
 
-export const subscribe = (req, res, next) => {};
+export const getUser = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    if (!user) return next(createError(404, "User Not Found!"));
 
-export const unsubscribe = (req, res, next) => {};
+    const { password, ...otherDetails } = user._doc;
+    res.status(200).json({
+      success: true,
+      message: "User Found Successfully!",
+      data: otherDetails,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
-export const likeVideo = (req, res, next) => {};
+export const subscribe = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
 
-export const dislikeVideo = (req, res, next) => {};
+export const unsubscribe = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const likeVideo = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const dislikeVideo = async (req, res, next) => {
+  try {
+  } catch (error) {
+    next(error);
+  }
+};
