@@ -23,6 +23,16 @@ app.use("/api/users", userRoute);
 app.use("/api/videos", videoRoute);
 app.use("/api/comments", commentRoute);
 
+// Error Handler Middleware
+app.use((err, req, res, next) => {
+  const statusCode = err.status || 500;
+  const message = err.message || "Something Went Wrong!";
+  return res.status(statusCode).json({
+    success: false,
+    message,
+  });
+});
+
 // Server Listening + DB Connection
 app.listen(PORT, () => {
   console.log(`Server Listening on Port: ${PORT}`);
