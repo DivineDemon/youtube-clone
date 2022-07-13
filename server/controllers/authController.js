@@ -47,6 +47,8 @@ export const signin = async (req, res, next) => {
       process.env.JWT_SECRET
     );
 
+    const { password, ...otherDetails } = user._doc;
+
     res
       .cookie("access_token", token, {
         httpOnly: true,
@@ -55,7 +57,7 @@ export const signin = async (req, res, next) => {
       .json({
         success: true,
         message: "User Signed In Successfully!",
-        data: user,
+        data: otherDetails,
       });
   } catch (error) {
     next(error);
