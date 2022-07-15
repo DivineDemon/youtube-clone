@@ -123,15 +123,47 @@ export const sub = async (req, res, next) => {
     const user = await User.findById(req.user.id);
     const subscriptions = user.subscriptions;
 
-    const list = Promise.all(
+    const list = await Promise.all(
       subscriptions.map((channelId) => {
         return Video.find({ userId: channelId });
       })
     );
     res.status(200).json({
-        success: true,
-        
-    })
+      success: true,
+      data: list.flat().sort((a, b) => b.createdAt - a.createdAt),
+    });
+  } catch (error) {
+    next(err);
+  }
+};
+
+export const getByTag = async (req, res, next) => {
+  try {
+    const tags = req.query.tags.split(",");
+    const videos = await Video.find({ tags: { $in: tags } }).limit(20);
+    if (!videos) return next(createError(404, "Videos Not Found!"));
+    res.status(200).json({
+      success: true,
+      message: "Successfully Retrieved Trending Videos!",
+      data: videos,
+    });
+  } catch (error) {
+    next(err);
+  }
+};
+
+export const search = async (req, res, next) => {
+  try {
+    const query = req.query.q;
+    const videos = await Video.find({
+      title: { $regex: query, $options: "i" },
+    }).limit(40);
+    if (!videos) return next(createError(404, "Videos Not Found!"));
+    res.status(200).json({
+      success: true,
+      message: "Successfully Retrieved Trending Videos!",
+      data: videos,
+    });
   } catch (error) {
     next(err);
   }

@@ -8,6 +8,8 @@ import {
   trend,
   random,
   sub,
+  getByTag,
+  search,
 } from "../controllers/videoController.js";
 import { verifyToken } from "./../config/verifyToken.js";
 
@@ -24,5 +26,7 @@ router.put("/view/:id", addView);
 router.get("/trend", trend);
 router.get("/random", random);
 router.get("/sub", verifyToken, sub);
+router.get("/tags", getByTag);
+router.get("/search", search);
 
 export default router;
