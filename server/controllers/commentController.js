@@ -38,6 +38,7 @@ export const deleteComment = async (req, res, next) => {
   }
 };
 
+// Get All Comments for a Specific Video
 export const getComments = async (req, res, next) => {
   try {
     const comments = await Comment.find({ videoId: req.params.video_id });
