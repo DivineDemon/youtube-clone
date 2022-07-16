@@ -1,9 +1,28 @@
-function App() {
+import styled from "styled-components";
+
+import Menu from "./components/Menu";
+import Navbar from "./components/Navbar";
+
+const Container = styled.div`
+  display: flex;
+`;
+
+const Main = styled.div`
+  flex: 7;
+`;
+
+const Wrapper = styled.div``;
+
+const App = () => {
   return (
-    <div className="App">
-      <h1>Hello World!</h1>
-    </div>
+    <Container>
+      <Menu />
+      <Main>
+        <Navbar />
+        <Wrapper>Video Cards</Wrapper>
+      </Main>
+    </Container>
   );
-}
+};
 
 export default App;
