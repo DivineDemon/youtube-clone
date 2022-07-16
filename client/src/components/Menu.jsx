@@ -23,9 +23,9 @@ import YouTube from "../img/logo.png";
 
 const Container = styled.div`
   flex: 1;
-  background-color: #202020;
-  height: 100vh;
-  color: white;
+  background-color: ${({ theme }) => theme.bg};
+  height: 100%;
+  color: ${({ theme }) => theme.text};
   font-size: 14px;
   position: sticky;
   top: 0;
@@ -57,7 +57,7 @@ const Item = styled.div`
 
 const Hr = styled.hr`
   margin: 15px 0px;
-  border: 0.5px solid #373737;
+  border: 0.5px solid ${({ theme }) => theme.soft};
 `;
 
 const Login = styled.div``;
@@ -76,7 +76,14 @@ const Button = styled.button`
   gap: 5px;
 `;
 
-const Menu = () => {
+const Title = styled.h2`
+  font-size: 14px;
+  font-weight: 500;
+  color: #aaaaaa;
+  margin-bottom: 20px;
+`;
+
+const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
@@ -105,6 +112,7 @@ const Menu = () => {
           </Button>
         </Login>
         <Hr />
+        <Title>BEST OF YOUTUBE</Title>
         <Item>
           <VideoLibraryOutlinedIcon />
           Library
@@ -151,9 +159,9 @@ const Menu = () => {
           <HelpOutlineOutlinedIcon />
           Help
         </Item>
-        <Item>
+        <Item onClick={() => setDarkMode(!darkMode)}>
           <SettingsBrightnessOutlinedIcon />
-          Light Mode
+          {darkMode ? "Light Mode" : "Dark Mode"}
         </Item>
       </Wrapper>
     </Container>
