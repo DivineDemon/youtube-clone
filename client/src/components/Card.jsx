@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const Container = styled.div`
   width: 360px;
@@ -47,17 +48,19 @@ const Info = styled.div`
 
 const Card = () => {
   return (
-    <Container>
-      <Image />
-      <Details>
-        <ChannelImage />
-        <Texts>
-          <Title>Test Video</Title>
-          <ChannelName>ShoodaCoder</ChannelName>
-          <Info>660,998 views • 1 day ago</Info>
-        </Texts>
-      </Details>
-    </Container>
+    <Link to="/video/test" style={{ textDecoration: "none" }}>
+      <Container>
+        <Image />
+        <Details>
+          <ChannelImage />
+          <Texts>
+            <Title>Test Video</Title>
+            <ChannelName>ShoodaCoder</ChannelName>
+            <Info>660,998 views • 1 day ago</Info>
+          </Texts>
+        </Details>
+      </Container>
+    </Link>
   );
 };
 

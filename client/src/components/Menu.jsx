@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 // Icons
 import HomeIcon from "@mui/icons-material/Home";
@@ -87,10 +88,12 @@ const Menu = ({ darkMode, setDarkMode }) => {
   return (
     <Container>
       <Wrapper>
-        <Logo>
-          <Img src={YouTube} />
-          YouTube
-        </Logo>
+        <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <Logo>
+            <Img src={YouTube} />
+            YouTube
+          </Logo>
+        </Link>
         <Item>
           <HomeIcon />
           Home
@@ -159,7 +162,12 @@ const Menu = ({ darkMode, setDarkMode }) => {
           <HelpOutlineOutlinedIcon />
           Help
         </Item>
-        <Item onClick={() => setDarkMode(!darkMode)}>
+        <Item
+          onClick={() => {
+            setDarkMode(!darkMode);
+            // localStorage.setItem("theme", !darkMode);
+          }}
+        >
           <SettingsBrightnessOutlinedIcon />
           {darkMode ? "Light Mode" : "Dark Mode"}
         </Item>

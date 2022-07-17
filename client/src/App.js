@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider } from "styled-components";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
@@ -23,6 +23,11 @@ const Wrapper = styled.div`
 
 const App = () => {
   const [darkMode, setDarkMode] = useState(false);
+
+  // useEffect(() => {
+  //   // localStorage.setItem("theme", darkMode);
+  //   setDarkMode(localStorage.getItem("theme"));
+  // }, [darkMode, setDarkMode]);
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
