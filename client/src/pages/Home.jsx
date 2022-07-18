@@ -16,7 +16,7 @@ const Home = ({ type }) => {
   useEffect(() => {
     const fetchVideos = async () => {
       const res = await axios.get(`/videos/${type}`);
-      setVideos(res.data);
+      setVideos(res.data.data);
     };
     fetchVideos();
   }, [type]);
