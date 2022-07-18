@@ -23,7 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const App = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   // useEffect(() => {
   //   // localStorage.setItem("theme", darkMode);
