@@ -72,7 +72,7 @@ export const getVideo = async (req, res, next) => {
       data: video,
     });
   } catch (error) {
-    next(err);
+    next(error);
   }
 };
 
