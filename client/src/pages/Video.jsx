@@ -6,6 +6,8 @@ import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
 import ThumbDownOffAltOutlinedIcon from "@mui/icons-material/ThumbDownOffAltOutlined";
 import ReplyOutlinedIcon from "@mui/icons-material/ReplyOutlined";
 import AddTaskOutlinedIcon from "@mui/icons-material/AddTaskOutlined";
+import Comments from "./../components/Comments";
+import Card from "./../components/Card";
 
 const Container = styled.div`
   display: flex;
@@ -77,6 +79,7 @@ const ChannelDetail = styled.div`
   display: flex;
   flex-direction: column;
   color: ${({ theme }) => theme.text};
+  width: 85%;
 `;
 
 const ChannelName = styled.span`
@@ -156,8 +159,11 @@ const Video = () => {
           <Subscribe>SUBSCRIBE</Subscribe>
         </Channel>
         <Hr />
+        <Comments />
       </Content>
-      <Recommendation>Recommendation</Recommendation>
+      <Recommendation>
+        <Card type="sm" />
+      </Recommendation>
     </Container>
   );
 };
