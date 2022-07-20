@@ -117,6 +117,12 @@ const Subscribe = styled.button`
   cursor: pointer;
 `;
 
+const VideoFrame = styled.video`
+  max-height: 720px;
+  width: 100%;
+  object-fit: cover;
+`;
+
 const Video = () => {
   const [channel, setChannel] = useState({});
 
@@ -161,15 +167,7 @@ const Video = () => {
     <Container>
       <Content>
         <VideoWrapper>
-          <iframe
-            width="100%"
-            height="720"
-            src="https://www.youtube.com/embed/5ephBUsfmzo"
-            title="YouTube video player"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+          <VideoFrame src={currentVideo.videoUrl} />
         </VideoWrapper>
         <Title>{currentVideo.title}</Title>
         <Details>
