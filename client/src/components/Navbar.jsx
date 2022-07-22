@@ -5,6 +5,8 @@ import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 import Upload from "./Upload";
 
 const Container = styled.div`
@@ -72,7 +74,10 @@ const Avatar = styled.img`
 `;
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const [open, setOpen] = useState(false);
+  const [query, setQuery] = useState("");
   const { currentUser } = useSelector((state) => state.user);
 
   return (
@@ -80,8 +85,13 @@ const Navbar = () => {
       <Container>
         <Wrapper>
           <Search>
-            <Input placeholder="search" />
-            <SearchOutlinedIcon />
+            <Input
+              placeholder="search"
+              onChange={(e) => setQuery(e.target.value)}
+            />
+            <SearchOutlinedIcon
+              onClick={() => navigate(`/search?q=${query}`)}
+            />
           </Search>
           {currentUser ? (
             <User>
