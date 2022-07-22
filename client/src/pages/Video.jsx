@@ -126,7 +126,6 @@ const VideoFrame = styled.video`
 const Video = () => {
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
-  console.log(currentVideo);
 
   const dispatch = useDispatch();
   const path = useLocation().pathname.split("/")[2];
@@ -143,7 +142,9 @@ const Video = () => {
 
         setChannel(channelRes.data.data);
         dispatch(fetchSuccess(videoRes.data.data));
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     };
     fetchData();
   }, [path, dispatch]);
