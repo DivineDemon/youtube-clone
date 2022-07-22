@@ -3,10 +3,8 @@ import styled from "styled-components";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import VideoCallOutlinedIcon from "@mui/icons-material/VideoCallOutlined";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
-
 import Upload from "./Upload";
 
 const Container = styled.div`
@@ -28,8 +26,8 @@ const Wrapper = styled.div`
 const Search = styled.div`
   width: 40%;
   position: absolute;
-  left: 0;
-  right: 0;
+  left: 0px;
+  right: 0px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -43,6 +41,8 @@ const Search = styled.div`
 const Input = styled.input`
   border: none;
   background-color: transparent;
+  outline: none;
+  color: ${({ theme }) => theme.text};
 `;
 
 const Button = styled.button`
@@ -70,28 +70,24 @@ const Avatar = styled.img`
   width: 32px;
   height: 32px;
   border-radius: 50%;
-  background-color: #ccc;
+  background-color: #999;
 `;
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   const [open, setOpen] = useState(false);
-  const [query, setQuery] = useState("");
+  const [q, setQ] = useState("");
   const { currentUser } = useSelector((state) => state.user);
-
   return (
     <>
       <Container>
         <Wrapper>
           <Search>
             <Input
-              placeholder="search"
-              onChange={(e) => setQuery(e.target.value)}
+              placeholder="Search"
+              onChange={(e) => setQ(e.target.value)}
             />
-            <SearchOutlinedIcon
-              onClick={() => navigate(`/search?q=${query}`)}
-            />
+            <SearchOutlinedIcon onClick={() => navigate(`/search?q=${q}`)} />
           </Search>
           {currentUser ? (
             <User>

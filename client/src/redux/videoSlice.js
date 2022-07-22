@@ -13,17 +13,14 @@ export const videoSlice = createSlice({
     fetchStart: (state) => {
       state.loading = true;
     },
-
     fetchSuccess: (state, action) => {
       state.loading = false;
       state.currentVideo = action.payload;
     },
-
     fetchFailure: (state) => {
       state.loading = false;
       state.error = true;
     },
-
     like: (state, action) => {
       if (!state.currentVideo.likes.includes(action.payload)) {
         state.currentVideo.likes.push(action.payload);
@@ -35,7 +32,6 @@ export const videoSlice = createSlice({
         );
       }
     },
-    
     dislike: (state, action) => {
       if (!state.currentVideo.dislikes.includes(action.payload)) {
         state.currentVideo.dislikes.push(action.payload);
