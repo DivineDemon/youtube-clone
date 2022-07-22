@@ -124,17 +124,19 @@ const VideoFrame = styled.video`
 `;
 
 const Video = () => {
-  const [channel, setChannel] = useState({});
-
   const { currentUser } = useSelector((state) => state.user);
   const { currentVideo } = useSelector((state) => state.video);
+  console.log(currentVideo);
+
   const dispatch = useDispatch();
   const path = useLocation().pathname.split("/")[2];
+
+  const [channel, setChannel] = useState({});
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const videoRes = await axios.get(`/videos/${path}`);
+        const videoRes = await axios.get(`/videos/find/${path}`);
         const channelRes = await axios.get(
           `/users/${videoRes.data.data.userId}`
         );

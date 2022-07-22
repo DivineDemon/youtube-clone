@@ -15,7 +15,7 @@ export const videoSlice = createSlice({
     },
 
     fetchSuccess: (state, action) => {
-      state.loading = true;
+      state.loading = false;
       state.currentVideo = action.payload;
     },
 
@@ -26,7 +26,7 @@ export const videoSlice = createSlice({
 
     like: (state, action) => {
       if (!state.currentVideo.likes.includes(action.payload)) {
-        state.currentVideo.likes.push(action.payload); // Redux Toolkit Allows State Mutation
+        state.currentVideo.likes.push(action.payload);
         state.currentVideo.dislikes.splice(
           state.currentVideo.dislikes.findIndex(
             (userId) => userId === action.payload
@@ -35,10 +35,10 @@ export const videoSlice = createSlice({
         );
       }
     },
-
+    
     dislike: (state, action) => {
       if (!state.currentVideo.dislikes.includes(action.payload)) {
-        state.currentVideo.dislikes.push(action.payload); // Redux Toolkit Allows State Mutation
+        state.currentVideo.dislikes.push(action.payload);
         state.currentVideo.likes.splice(
           state.currentVideo.likes.findIndex(
             (userId) => userId === action.payload
